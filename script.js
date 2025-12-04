@@ -12,24 +12,19 @@ document.addEventListener("DOMContentLoaded", function() {
             const currentPhrase = phrases[phraseIndex];
             
             if (isDeleting) {
-                // Deleta caracteres
                 typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
             } else {
-                // Adiciona caracteres
                 typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
             }
 
-            // Define o tempo de digitação
             let typingSpeed = isDeleting ? 100 : 150;
 
             if (!isDeleting && charIndex === currentPhrase.length) {
-                // Pausa no final da palavra
                 typingSpeed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
-                // Passa para a próxima palavra
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
             }
@@ -37,27 +32,53 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(type, typingSpeed);
         }
         
-        type(); // Inicia o efeito
+        type(); 
     }
 
+    // --- CONFIGURAÇÃO DO CARROSSEL (SWIPER) ---
+    const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,      // Mobile: mostra 1 card
+        spaceBetween: 25,      // Espaço entre os cards
+        loop: true,            // Carrossel infinito
+        grabCursor: true,      // Cursor de mãozinha
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,   // Pode clicar nas bolinhas
+        },
+        autoplay: {
+            delay: 4000,       // Passa sozinho a cada 4 seg
+            disableOnInteraction: false,
+        },
+        // Pontos de quebra (Responsividade)
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2, // Tablet: mostra 2 cards
+            },
+            1024: {
+                slidesPerView: 3, // PC: mostra 3 cards
+            },
+        },
+    });
 
-    // --- Animação de Fade-in ao Rolar (Intersection Observer) ---
-    // Esta é a forma moderna e eficiente de fazer animações de scroll
-    
+
+    // --- Animação de Fade-in ao Rolar ---
     const sectionsToFade = document.querySelectorAll('.fade-in-section');
 
     if (sectionsToFade.length) {
         const observerOptions = {
-            root: null, // Observa em relação ao viewport
+            root: null, 
             rootMargin: '0px',
-            threshold: 0.15 // 15% da seção precisa estar visível
+            threshold: 0.15 
         };
 
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Para a animação não repetir
+                    observer.unobserve(entry.target); 
                 }
             });
         };

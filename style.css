@@ -2,11 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
-    --bg-dark: #1e1bdb;
-    --bg-light-dark: #000000;
-    --text-primary: #e0e0e0;
-    --text-secondary: #aaaaaa;
-    --accent-color: #4d4ae9; /* Cor primária do Bootstrap */
+    /* Tons Frios */
+    --bg-dark: #091a2e; /* Azul-Marinho Profundo */
+    --bg-light-dark: #122842; /* Azul Escuro Intermediário */
+    --text-primary: #e0e0e0; /* Cinza Claro */
+    --text-secondary: #aaaaaa; /* Cinza Médio */
+    --accent-color: #00b7ff; /* Ciano Vibrante */
+    --accent-border: #008cff; /* Azul Claro */
 }
 
 html {
@@ -15,7 +17,7 @@ html {
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-dark);
+    background-color: var(--bg-dark); 
     color: var(--text-primary);
     line-height: 1.6;
 }
@@ -26,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- Seções Alternadas --- */
 .section-darker {
-    background-color: var(--bg-light-dark);
+    background-color: var(--bg-light-dark); 
 }
 
 section {
@@ -35,8 +37,8 @@ section {
 
 /* --- Navbar "Glassmorphism" --- */
 .navbar-glass {
-    background: rgba(20, 20, 20, 0.7); /* Fundo escuro semi-transparente */
-    backdrop-filter: blur(10px); /* O efeito de desfoque */
+    background: rgba(18, 40, 66, 0.7); 
+    backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: background 0.3s ease;
@@ -53,7 +55,7 @@ section {
 /* --- Seção Hero --- */
 .hero-section {
     min-height: 100vh;
-    background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 1)), url('cru.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.418)), url('fundo.gif');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -64,44 +66,75 @@ section {
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid var(--accent-color);
-    box-shadow: 0 0 20px rgba(13, 110, 253, 0.5);
+    border: 4px solid var(--accent-color); 
+    box-shadow: 0 0 20px rgba(7, 94, 224, 0.5); 
 }
 
-/* --- Efeito Máquina de Escrever (Typewriter) --- */
+/* --- Efeito Máquina de Escrever --- */
 .typewriter-text {
-    color: var(--accent-color);
+    color: var(--accent-color); 
     font-weight: 600;
-    border-right: 2px solid var(--accent-color);
+    border-right: 2px solid var(--accent-color); 
     animation: blinkCursor 0.7s infinite;
 }
 
 @keyframes blinkCursor {
-    from { border-right-color: var(--accent-color); }
+    from { border-right-color: var(--accent-color); } 
     to { border-right-color: transparent; }
 }
 
 /* --- Cards de Projeto (Glassmorphism) --- */
 .project-card {
-    background: rgba(40, 40, 40, 0.5);
+    background: rgba(25, 50, 75, 0.5); 
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 5px inset var(--accent-border); 
     border-radius: 15px;
     padding: 2rem;
-    height: 100%; /* Garante que os cards tenham a mesma altura */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Altura automática controlada pelo Swiper */
+    height: 100%; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .project-card .card-tags {
-    margin-top: auto; /* Empurra os botões para o final */
+    margin-top: auto; 
     padding-top: 1rem;
+}
+
+.project-card .card-tags .badge {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+/* --- SWIPER CARROSSEL CUSTOMIZAÇÃO --- */
+.swiper {
+    width: 100%;
+    padding-bottom: 50px !important; /* Espaço para paginação */
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex; /* Para os cards ficarem mesma altura */
+}
+
+/* Bolinhas de navegação */
+.swiper-pagination-bullet {
+    background: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--accent-color);
+    opacity: 1;
+    transform: scale(1.2);
 }
 
 /* --- Tags de Habilidade --- */
@@ -113,7 +146,7 @@ section {
 }
 
 .skill-tag {
-    background-color: var(--bg-light-dark);
+    background-color: var(--bg-light-dark); 
     color: var(--text-primary);
     padding: 0.75rem 1.5rem;
     border-radius: 30px;
@@ -123,8 +156,8 @@ section {
 }
 
 .skill-tag:hover {
-    background-color: var(--accent-color);
-    color: #fff;
+    background-color: var(--accent-color); 
+    color: #000; 
     transform: scale(1.05);
 }
 
@@ -140,10 +173,10 @@ footer {
 }
 
 .btn-social:hover {
-    color: var(--accent-color);
+    color: var(--accent-color); 
 }
 
-/* --- Animação de Fade-in no Scroll --- */
+/* --- Animação de Fade-in --- */
 .fade-in-section {
     opacity: 0;
     transform: translateY(30px);
